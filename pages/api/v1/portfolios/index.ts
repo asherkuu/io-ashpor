@@ -14,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
     await Portfolios.find({})
       .sort({ createdAt: -1 })
       .exec(async (err: Object, portfolios) => {
-        res.status(200).json({ portfolios });
+        res.status(200).json(portfolios);
       });
   } catch (error) {
     res.status(500).json({

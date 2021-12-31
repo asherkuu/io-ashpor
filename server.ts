@@ -35,9 +35,9 @@ app.prepare().then(() => {
   // });
 
   // @ts-ignore
-  server.listen(4000, (err) => {
+  server.listen(process.env.PORT || 4001, (err) => {
     if (err) throw err;
-    console.log("listening to 4000");
+    console.log(`listening to ${process.env.PORT || "4001"}`);
   });
 });
 

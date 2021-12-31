@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "server": "nodemon server.ts",
+    "server": "cross-env nodemon server.ts",
     "server-dev": "cross-env NODE_ENV=production ts-node --project tsconfig.json -r tsconfig-paths/register server.ts"
   },
   "dependencies": {
