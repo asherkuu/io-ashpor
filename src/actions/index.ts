@@ -1,28 +1,24 @@
 import { useState } from "react";
+import axios from "axios";
 import useSWR from "swr";
 
-const fetcher = (url) => {
-  fetch(url)
-    .then(async (res) => {
-      return await res.json();
-    })
-    .catch((e) => {
-      return Promise.reject(e);
-    });
-};
+export const fetcher = async (url) =>
+  await axios.get(url).then(async (res) => {
+    if (res.status !== 200) {
+      return Promise.reject(res);
+    } else {
+      return res.data;
+    }
+  });
 
 // useSWR get
 export const useSwrHandler = (url: string) => {
-  const res = useSWR(`/api/v1${url}`, fetcher, {
+  const { data, error, ...rest } = useSWR(`/api/v1${url}`, fetcher, {
     onErrorRetry: (error) => {
       if (error.status === 401) return false;
     },
   });
 
-  console.log(res);
-
-  const { data, error, ...rest } = res;
-  return { dtata: 1, loading: false };
   return { data, error, loading: !error && !data, ...rest };
 };
 

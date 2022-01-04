@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import connectDB from "../../../../src/middleware/mongodb";
@@ -18,9 +17,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
       });
   } catch (error) {
     res.status(500).json({
-      msg: "ㅇㅖ이ㅅ",
+      msg: error.message,
       error,
     });
   }
 };
+
 export default connectDB(handler);

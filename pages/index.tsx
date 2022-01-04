@@ -1,13 +1,12 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import useSWR from "swr";
 import { useGetPortfolioList } from "actions/portfolios";
 
 const Home: NextPage = () => {
   const { data, loading } = useGetPortfolioList();
-  console.log(data);
+
   const handleClick = async () => {
     alert("NOOB !");
   };
@@ -22,7 +21,6 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <button onClick={handleClick}>CLICK HERE</button>
-        <span>{process.env.LOCAL_API_URL}</span>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
@@ -32,7 +30,7 @@ const Home: NextPage = () => {
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
-        {/* <div className={styles.grid}>
+        <div className={styles.grid}>
           {loading ? (
             <span>Loading</span>
           ) : (
@@ -43,7 +41,7 @@ const Home: NextPage = () => {
               </div>
             ))
           )}
-        </div> */}
+        </div>
       </main>
 
       <footer className={styles.footer}>
