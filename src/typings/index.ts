@@ -8,3 +8,5 @@ export type ReactNode =
   | boolean
   | null
   | undefined;
+
+export type CatchType = { msg: string; error?: any };
