@@ -1,11 +1,10 @@
-import { Box } from '@chakra-ui/react'
+import { Box } from "@chakra-ui/react";
 
 const Footer = () => {
   return (
     <>
       <Box align="center" opacity={0.4} fontSize="sm">
-        &copy; {new Date().getFullYear()} Made By Asher Kim. All Rights
-        Reserved.
+        &copy; 2021 Made By Asher Kim. All Rights Reserved.
       </Box>
       {/* <Box align="center" opacity={0.4} fontSize="sm">
         Insfired By
@@ -20,7 +19,7 @@ const Footer = () => {
         </Link>
       </Box> */}
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

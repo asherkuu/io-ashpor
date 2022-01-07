@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import IPortfolio from "../interfaces/portfolio";
 import autoIncrement from "mongoose-auto-increment";
+
 autoIncrement.initialize(mongoose.connection);
 
 const PortfolioSchema: Schema<IPortfolio> = new Schema(
