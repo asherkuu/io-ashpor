@@ -1,16 +1,19 @@
 import React from "react";
 import { GetServerSideProps, NextPage } from "next";
-import { useRouter } from "next/router";
 import { Container, Badge } from "@chakra-ui/react";
 
-import Layout from "components/layouts/article";
+import Layout from "components/layouts/Article";
 import Viewer from "components/viewer";
 import { Title } from "components/work";
 
 import { useGetPortfolioById } from "actions/portfolios";
 import IPortfolio from "interfaces/portfolio";
 
-const WorkDetail: NextPage<{ param: string }> = ({ param }) => {
+interface WorkDetailProps {
+  param: string;
+}
+
+const WorkDetail: NextPage<WorkDetailProps> = ({ param }) => {
   const { data, loading }: { data: IPortfolio; loading: boolean } =
     useGetPortfolioById(param);
 

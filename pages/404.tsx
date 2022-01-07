@@ -1,3 +1,4 @@
+import { NextPage } from "next";
 import NextLink from "next/link";
 import {
   Box,
@@ -8,7 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const NotFound = () => {
+const NotFound: NextPage = () => {
   return (
     <Container>
       <Heading as="h1">Not found</Heading>

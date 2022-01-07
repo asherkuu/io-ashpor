@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 
-import { View } from './styled'
+import { View } from "./styled";
 
-import 'react-quill/dist/quill.snow.css'
+import "react-quill/dist/quill.snow.css";
 
 const Viewer = ({ contents }) => {
   return (
@@ -10,9 +10,9 @@ const Viewer = ({ contents }) => {
       <div
         className="detail-container"
         dangerouslySetInnerHTML={{ __html: contents }}
-      ></div>
+      />
     </View>
-  )
-}
+  );
+};
 
-export default Viewer
+export default Viewer;

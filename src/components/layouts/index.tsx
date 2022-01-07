@@ -1,16 +1,25 @@
-import Head from 'next/head'
-import dynamic from 'next/dynamic'
-import NavBar from '../navbar'
-import { Box, Container } from '@chakra-ui/react'
-import Footer from '../footer'
-import VoxelDogLoader from '../voxel-dog-loader'
+import { FC } from "react";
+import Head from "next/head";
+import dynamic from "next/dynamic";
+import { Box, Container } from "@chakra-ui/react";
 
-const LazyVoxelDog = dynamic(() => import('../voxel-dog'), {
+import NavBar from "./Navbar";
+import Footer from "../footer";
+import VoxelDogLoader from "../voxel-dog-loader";
+
+import { ReactNode } from "typings";
+
+const LazyVoxelDog = dynamic(() => import("../voxel-dog"), {
   ssr: false,
-  loading: () => <VoxelDogLoader />
-})
+  loading: () => <VoxelDogLoader />,
+});
 
-const Main = ({ children, router }) => {
+interface MainProps {
+  children: ReactNode;
+  router: any;
+}
+
+const Main: FC<MainProps> = ({ children, router }) => {
   return (
     <Box as="main" pb={8}>
       <Head>
@@ -36,7 +45,7 @@ const Main = ({ children, router }) => {
         <Footer />
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

@@ -1,15 +1,19 @@
-import React from "react";
+import React, { FC } from "react";
 import { NextPage } from "next";
 import { Container, Heading, SimpleGrid } from "@chakra-ui/react";
 
-import Layout from "components/layouts/article";
+import Layout from "components/layouts/Article";
 import Section from "components/section";
 import { WorkGridItem } from "components/grid-item";
 
 import { useGetPortfolioList } from "actions/portfolios";
 import IPortfolio from "interfaces/portfolio";
 
-const ListItem = React.memo(({ data }: { data: IPortfolio[] }) => {
+interface ListItemProps {
+  data: IPortfolio[];
+}
+
+const ListItem: FC<ListItemProps> = React.memo(({ data }) => {
   return (
     <>
       {data?.map((item) => (

@@ -43,7 +43,7 @@ import {
 } from "react-icons/si";
 import { FiCodesandbox } from "react-icons/fi";
 
-import Layout from "components/layouts/article";
+import Layout from "components/layouts/Article";
 import Section from "components/section";
 import Paragraph from "components/paragraph";
 import { BioSection, BioYear } from "components/bio";
@@ -242,7 +242,6 @@ const Home: NextPage = () => {
             variant="ghost"
             colorScheme="teal"
             leftIcon={<Icon as={SiNodedotjs} />}
-            SiMysql
           >
             NodeJs
           </Button>

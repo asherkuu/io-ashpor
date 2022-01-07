@@ -1,8 +1,9 @@
 import Head from "next/head";
+import { NextPage } from "next";
 import { motion } from "framer-motion";
 
 import { GridItemStyle } from "../grid-item";
-import { NextPage } from "next";
+
 import { ReactNode } from "typings";
 
 interface LayoutProps {
