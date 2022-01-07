@@ -13,8 +13,8 @@ export default interface IPortfolio extends Document {
   description: string;
   img: {
     originalname: string;
-    localtion: string;
-    nimetype: string;
+    location: string;
+    mimetype: string;
     size: number;
     key: string;
   };
