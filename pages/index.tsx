@@ -169,12 +169,19 @@ const Home: NextPage = () => {
           >
             React Native
           </Button>
-          <Button
+          {/* <Button
             variant="ghost"
             colorScheme="teal"
             leftIcon={<Icon as={SiJavascript} />}
           >
             Javascript
+          </Button> */}
+          <Button
+            variant="ghost"
+            colorScheme="teal"
+            leftIcon={<Icon as={SiTypescript} />}
+          >
+            Typescript
           </Button>
           <Button
             variant="ghost"
@@ -186,24 +193,17 @@ const Home: NextPage = () => {
           <Button
             variant="ghost"
             colorScheme="teal"
-            leftIcon={<Icon as={SiTypescript} />}
-          >
-            Typescript
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
             leftIcon={<Icon as={SiRedux} />}
           >
             Redux
           </Button>
-          <Button
+          {/* <Button
             variant="ghost"
             colorScheme="teal"
             leftIcon={<Icon as={IoLogoReact} />}
           >
             Hooks
-          </Button>
+          </Button> */}
           <Button
             variant="ghost"
             colorScheme="teal"
@@ -218,13 +218,13 @@ const Home: NextPage = () => {
           >
             SASS
           </Button>
-          <Button
+          {/* <Button
             variant="ghost"
             colorScheme="teal"
             leftIcon={<Icon as={SiStyledcomponents} />}
           >
             Styled-Component
-          </Button>
+          </Button> */}
           <div>
             <strong>
               <span>Backend</span>

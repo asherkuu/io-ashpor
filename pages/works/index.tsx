@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { NextPage } from "next";
 import { Container, Heading, SimpleGrid } from "@chakra-ui/react";
 
+import { WorksLoader } from "components/shares/Loader";
 import Layout from "components/layouts/Article";
 import Section from "components/section";
 import { WorkGridItem } from "components/grid-item";
@@ -43,7 +44,7 @@ const Works: NextPage = () => {
         </Heading>
 
         {loading && !data ? (
-          <span>Loading...</span>
+          <WorksLoader />
         ) : (
           <SimpleGrid columns={[1, 1, 2]} gap={6}>
             {data && <ListItem data={data} />}
