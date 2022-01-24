@@ -59,7 +59,7 @@ export const WorkGridItem: FC<GridItemProps> = ({
             {title}
           </Text>
         </LinkOverlay>
-        <Text fontSize={14}>{children}</Text>
+        {children && <Text fontSize={14}>{children}</Text>}
       </LinkBox>
     </NextLink>
   </Box>
