@@ -10,6 +10,9 @@ import { WorkGridItem } from "components/grid-item";
 import { useGetPortfolioList } from "actions/portfolios";
 import IPortfolio from "interfaces/portfolio";
 
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
 interface ListItemProps {
   data: IPortfolio[];
 }
@@ -53,6 +56,15 @@ const Works: NextPage = () => {
       </Container>
     </Layout>
   );
+};
+
+export const getServerSideProps = async ({ locale }) => {
+  console.log("locale of getStaticProps", locale);
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
 };
 
 export default Works;

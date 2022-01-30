@@ -1,4 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
+import { appWithTranslation } from "next-i18next";
 
 import theme from "lib/theme";
 import Fonts from "components/fonts";
@@ -18,4 +19,4 @@ const App = ({ Component, pageProps, router }) => {
   );
 };
 
-export default App;
+export default appWithTranslation(App);

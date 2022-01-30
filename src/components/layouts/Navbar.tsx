@@ -1,5 +1,6 @@
 import Logo from "../shares/logo";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import {
   Container,
   Box,
@@ -13,6 +14,7 @@ import {
   MenuButton,
   IconButton,
   useColorModeValue,
+  Select,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { IoLogoGithub } from "react-icons/io5";
@@ -31,7 +33,6 @@ interface LinkItemProps {
   pl?: number;
   children: ReactNode;
 }
-
 const LinkItem: FC<LinkItemProps> = ({
   href,
   path,
@@ -57,6 +58,7 @@ const LinkItem: FC<LinkItemProps> = ({
 };
 
 const Navbar = (props) => {
+  const router = useRouter();
   const { path } = props;
 
   return (
@@ -115,7 +117,19 @@ const Navbar = (props) => {
         </Stack>
 
         <Box flex={1} align="right">
-          <ThemeToggleButton />
+          <Box display="flex">
+            <NextLink href={router.asPath} locale="en">
+              <button>English</button>
+            </NextLink>
+            <NextLink href={router.asPath} locale="ko">
+              <button>한국어</button>
+            </NextLink>
+            {/* <Select value="en" m="0 3px 0 0">
+              <option value="en">English</option>
+              <option value="ko">한국어</option>
+            </Select> */}
+            <ThemeToggleButton />
+          </Box>
 
           <Box ml={2} display={{ base: "inline-block", md: "none" }}>
             <Menu isLazy id="navbar-menu">

@@ -48,7 +48,11 @@ import Section from "components/section";
 import Paragraph from "components/paragraph";
 import { BioSection, BioYear } from "components/bio";
 
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
 const Home: NextPage = () => {
+  const { t } = useTranslation("common");
   return (
     <Layout>
       <Container>
@@ -75,7 +79,7 @@ const Home: NextPage = () => {
                   colorScheme="teal"
                   leftIcon={<Icon as={IoCalendarClearOutline} />}
                 >
-                  1997.12.20 / {new Date().getFullYear() - 1997 + 1} 세
+                  1997.12.20 / {new Date().getFullYear() - 1997 + 1} {t("age")}
                 </Button>
               </ListItem>
               <ListItem>
@@ -420,6 +424,15 @@ const Home: NextPage = () => {
       </Container>
     </Layout>
   );
+};
+
+export const getServerSideProps = async ({ locale }) => {
+  console.log("locale of getStaticProps", locale);
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
 };
 
 export default Home;

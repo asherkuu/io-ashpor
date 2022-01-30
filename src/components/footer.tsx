@@ -1,12 +1,13 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Button, Icon, Link } from "@chakra-ui/react";
+import { IoLogoInstagram } from "react-icons/io5";
 
 const Footer = () => {
   return (
     <>
       <Box align="center" opacity={0.4} fontSize="sm">
-        &copy; 2021 Made By Asher Kim. All Rights Reserved.
+        &copy; 2022 Made By Asher Kim. All Rights Reserved.
       </Box>
-      {/* <Box align="center" opacity={0.4} fontSize="sm">
+      <Box align="center" opacity={0.4} fontSize="sm">
         Insfired By
         <Link href="https://instagram.com/craftzdog" target="_blank">
           <Button
@@ -17,7 +18,7 @@ const Footer = () => {
             @craftzdog
           </Button>
         </Link>
-      </Box> */}
+      </Box>
     </>
   );
 };
