@@ -10,7 +10,7 @@ interface CodeProps {
 const Index: NextPage<CodeProps> = ({ param }) => {
   const render = { reactVac: { id: 1, render: <ReactVac /> } };
 
-  return <div>{render.render}</div>;
+  return <div>{render[param].render}</div>;
 };
 
 export const getServerSideProps: GetServerSideProps<{ param: string }> = async (

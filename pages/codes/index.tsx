@@ -18,11 +18,11 @@ const ListItem: FC<ListItemProps> = React.memo(({ data }) => {
     <>
       {data?.map((item) => (
         <Section key={item._id} delay={0.1}>
-          <GridItem
+          {/* <GridItem
             href={`/codes/${item._id}`}
             title={item.title}
             thumbnail={item.img.location}
-          />
+          /> */}
         </Section>
       ))}
     </>
