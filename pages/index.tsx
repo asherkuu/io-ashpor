@@ -22,7 +22,6 @@ import {
   IoCallOutline,
   IoCalendarClearOutline,
   IoMailOutline,
-  IoLogoElectron,
 } from "react-icons/io5";
 import {
   SiNextdotjs,
@@ -41,18 +40,24 @@ import {
   SiEclipseide,
   SiLinux,
 } from "react-icons/si";
+import { GrGremlin } from "react-icons/gr";
 import { FiCodesandbox } from "react-icons/fi";
 
 import Layout from "components/layouts/Article";
 import Section from "components/section";
 import Paragraph from "components/paragraph";
-import { BioSection, BioYear } from "components/bio";
+import { BioIntro, BioSection, BioYear } from "components/bio";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 
-const Home: NextPage = () => {
+const Home: NextPage<{ locale: string }> = ({ locale }) => {
   const { t } = useTranslation("common");
+
+  const getAge = () => {
+    const bornAge = locale !== "ko" ? -1 : +1;
+    return new Date().getFullYear() - 1997 + bornAge;
+  };
   return (
     <Layout>
       <Container>
@@ -69,38 +74,33 @@ const Home: NextPage = () => {
         <Box display={{ md: "flex" }}>
           <Box flexGrow={1}>
             <Heading as="h2" variant="page-title">
-              김선규 / Asher Kim
+              {t("name")}
             </Heading>
-            <p>Digital Craftsman ( Artist / Developer )</p>
-            <List>
-              <ListItem>
-                <Button
-                  variant="ghost"
-                  colorScheme="teal"
-                  leftIcon={<Icon as={IoCalendarClearOutline} />}
-                >
-                  1997.12.20 / {new Date().getFullYear() - 1997 + 1} {t("age")}
-                </Button>
-              </ListItem>
-              <ListItem>
-                <Button
-                  variant="ghost"
-                  colorScheme="teal"
-                  leftIcon={<Icon as={IoCallOutline} />}
-                >
-                  010-3948-2031
-                </Button>
-              </ListItem>
-              <ListItem>
-                <Button
-                  variant="ghost"
-                  colorScheme="teal"
-                  leftIcon={<Icon as={IoMailOutline} />}
-                >
-                  asher_kuu@naver.com
-                </Button>
-              </ListItem>
-            </List>
+            <Box m="15px 0 20px 0">
+              <List>
+                <ListItem>
+                  <BioIntro>
+                    <Icon as={GrGremlin} />
+                    <span>South of Korea</span>
+                  </BioIntro>
+                  <BioIntro>
+                    <Icon as={IoCalendarClearOutline} />
+                    <span>
+                      1997.12.20 / {getAge()}
+                      {t("age")}
+                    </span>
+                  </BioIntro>
+                  <BioIntro>
+                    <Icon as={IoCallOutline} />
+                    <span>+82 10-3948-2031</span>
+                  </BioIntro>
+                  <BioIntro>
+                    <Icon as={IoMailOutline} />
+                    <span>kyuseon39@gmail.com / asher_kuu@naver.com</span>
+                  </BioIntro>
+                </ListItem>
+              </List>
+            </Box>
           </Box>
           <Box
             flexShrink={0}
@@ -112,7 +112,7 @@ const Home: NextPage = () => {
               borderColor="whiteAlpha.800"
               borderWidth={2}
               borderStyle="solid"
-              maxWidth="180px"
+              maxWidth="200px"
               display="inline-block"
               borderRadius="full"
               src="/images/asher.png"
@@ -123,17 +123,9 @@ const Home: NextPage = () => {
 
         <Section delay={0.1}>
           <Heading as="h3" variant="section-title">
-            Works
+            Intro
           </Heading>
-          <Paragraph>
-            Java Programing 과정을 수료한 이후 첫 1년간 Java 및 Javascript를
-            이용해서 REST API 및 웹 개발을 하였고, 이후에는 React로 언어를
-            변경해서 React, Node를 이용하여 웹을 개발을 해오고 있습니다. 새로운
-            기술은 물론 코드의 가독성 및 최적화에 관심이 많으며 팀원들에게
-            내일도 같이 일하고 싶은 개발자가 되고싶은 개발자{" "}
-            <strong>김선규</strong>
-            입니다.
-          </Paragraph>
+          <Paragraph>{t("Intro")}</Paragraph>
           <Box align="center" my={4}>
             <NextLink href="/works">
               <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
@@ -149,7 +141,7 @@ const Home: NextPage = () => {
           </Heading>
           <div>
             <strong>
-              <span>Frontend</span>
+              <span>Front-end</span>
             </strong>
           </div>
           <Button
@@ -231,7 +223,7 @@ const Home: NextPage = () => {
           </Button> */}
           <div>
             <strong>
-              <span>Backend</span>
+              <span>Back-end</span>
             </strong>
           </div>
 
@@ -305,13 +297,6 @@ const Home: NextPage = () => {
           >
             Linux
           </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={IoLogoElectron} />}
-          >
-            Electron
-          </Button>
         </Section>
 
         <Section delay={0.3}>
@@ -324,7 +309,7 @@ const Home: NextPage = () => {
               <span>~</span>
               <span>18.09</span>
             </BioYear>
-            육군 병장 만기 전역
+            {t("Bio.army")}
           </BioSection>
           <BioSection>
             <BioYear>
@@ -332,7 +317,7 @@ const Home: NextPage = () => {
               <span>~</span>
               <span>19.08</span>
             </BioYear>
-            [NCS] 디지털컨버전스 응용 SW 개발자 양성과정 이수
+            {t("Bio.study")}
           </BioSection>
           <BioSection>
             <BioYear>
@@ -340,7 +325,7 @@ const Home: NextPage = () => {
               <span>~</span>
               <span>20.08</span>
             </BioYear>
-            (주) 워터정보
+            {t("Bio.waterInfo")}
           </BioSection>
           <BioSection>
             <BioYear>
@@ -348,19 +333,19 @@ const Home: NextPage = () => {
               <span>~</span>
               <span>21.05</span>
             </BioYear>
-            (주) 시냇물 ENT
+            {t("Bio.sinaetmul")}
           </BioSection>
           <BioSection>
             <BioYear>
               <span>21.09</span> <span>~</span> <span>21.11</span>
             </BioYear>
-            (주) 아벤트
+            {t("Bio.abent")}
           </BioSection>
           <BioSection>
             <BioYear>
-              <span>21.12</span> <span>~</span> <span>현재</span>
+              <span>21.12</span> <span>~</span> <span>{t("now")}</span>
             </BioYear>
-            (주) BSS 컴퍼니
+            {t("Bio.bss")}
           </BioSection>
         </Section>
 
@@ -427,11 +412,8 @@ const Home: NextPage = () => {
 };
 
 export const getServerSideProps = async ({ locale }) => {
-  console.log("locale of getStaticProps", locale);
   return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-    },
+    props: { locale, ...(await serverSideTranslations(locale, ["common"])) },
   };
 };
 

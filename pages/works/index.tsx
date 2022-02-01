@@ -15,9 +15,10 @@ import { useTranslation } from "next-i18next";
 
 interface ListItemProps {
   data: IPortfolio[];
+  locale: string;
 }
 
-const ListItem: FC<ListItemProps> = React.memo(({ data }) => {
+const ListItem: FC<ListItemProps> = React.memo(({ data, locale }) => {
   return (
     <>
       {data?.map((item) => (
@@ -35,7 +36,7 @@ const ListItem: FC<ListItemProps> = React.memo(({ data }) => {
   );
 });
 
-const Works: NextPage = () => {
+const Works: NextPage<{ locale: string }> = ({ locale }) => {
   const { data, loading }: { data: IPortfolio[]; loading: boolean } =
     useGetPortfolioList();
 
@@ -50,7 +51,7 @@ const Works: NextPage = () => {
           <WorksLoader />
         ) : (
           <SimpleGrid columns={[1, 1, 2]} gap={6}>
-            {data && <ListItem data={data} />}
+            {data && <ListItem data={data} locale={locale} />}
           </SimpleGrid>
         )}
       </Container>
@@ -59,9 +60,9 @@ const Works: NextPage = () => {
 };
 
 export const getServerSideProps = async ({ locale }) => {
-  console.log("locale of getStaticProps", locale);
   return {
     props: {
+      locale,
       ...(await serverSideTranslations(locale, ["common"])),
     },
   };

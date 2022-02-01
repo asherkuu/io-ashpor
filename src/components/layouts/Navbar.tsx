@@ -22,6 +22,7 @@ import { IoLogoGithub } from "react-icons/io5";
 import ThemeToggleButton from "../theme-toggle-button";
 import { ReactNode } from "typings";
 import { FC } from "react";
+import Locales from "./Locales";
 
 interface LinkItemProps {
   href: string;
@@ -116,19 +117,10 @@ const Navbar = (props) => {
           </LinkItem>
         </Stack>
 
-        <Box flex={1} align="right">
-          <Box display="flex">
-            <NextLink href={router.asPath} locale="en">
-              <button>English</button>
-            </NextLink>
-            <NextLink href={router.asPath} locale="ko">
-              <button>한국어</button>
-            </NextLink>
-            {/* <Select value="en" m="0 3px 0 0">
-              <option value="en">English</option>
-              <option value="ko">한국어</option>
-            </Select> */}
+        <Box align="right">
+          <Box display="flex" align="right">
             <ThemeToggleButton />
+            <Locales />
           </Box>
 
           <Box ml={2} display={{ base: "inline-block", md: "none" }}>
