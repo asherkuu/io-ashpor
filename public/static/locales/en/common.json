@@ -11,6 +11,10 @@
     "bss": "BSS Company Inc.",
     "now": "now"
   },
+  "Work": {
+    "working": "Working Project",
+    "toy": "Toy Project"
+  },
   "Form": {
     "validate_required": "{{field}} is required."
   }

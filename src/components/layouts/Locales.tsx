@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { Box } from "@chakra-ui/react";
-import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { IconButton } from "@chakra-ui/button";
 import { AiOutlineGlobal } from "react-icons/ai";
 
@@ -20,7 +20,6 @@ const Locales = () => {
           aria-label="locales"
           variant="outline"
         />
-
         <MenuList>
           <MenuItem onClick={() => handleClickLocale("en")}>English</MenuItem>
           <MenuItem onClick={() => handleClickLocale("ko")}>한국어</MenuItem>

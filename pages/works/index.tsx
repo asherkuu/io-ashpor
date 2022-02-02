@@ -1,6 +1,9 @@
 import React, { FC } from "react";
 import { NextPage } from "next";
-import { Container, Heading, SimpleGrid } from "@chakra-ui/react";
+import NextLink from "next/link";
+import { Container, Heading, SimpleGrid, Button } from "@chakra-ui/react";
+import { EditIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/router";
 
 import { WorksLoader } from "components/shares/Loader";
 import Layout from "components/layouts/Article";
@@ -18,33 +21,47 @@ interface ListItemProps {
   locale: string;
 }
 
-const ListItem: FC<ListItemProps> = React.memo(({ data, locale }) => {
+const ListItem: FC<ListItemProps> = ({ data, locale }) => {
   return (
     <>
-      {data?.map((item) => (
-        <Section key={item._id} delay={0.1}>
-          <WorkGridItem
-            id={item._id}
-            title={item.title}
-            thumbnail={item.img.location}
-          >
-            {item.description}
-          </WorkGridItem>
-        </Section>
-      ))}
+      {data &&
+        data?.map((item) => (
+          <Section key={item._id} delay={0.1}>
+            <WorkGridItem
+              id={item._id}
+              title={item.title}
+              thumbnail={item.img.location}
+            >
+              {item.description}
+            </WorkGridItem>
+          </Section>
+        ))}
     </>
   );
-});
+};
 
 const Works: NextPage<{ locale: string }> = ({ locale }) => {
+  const router = useRouter();
   const { data, loading }: { data: IPortfolio[]; loading: boolean } =
     useGetPortfolioList();
 
   return (
     <Layout title="Works">
       <Container>
-        <Heading as="h3" fontSize={20} mb={4}>
+        <Heading
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          as="h3"
+          fontSize={20}
+          mb={4}
+        >
           Works
+          <NextLink href="/admin/new">
+            <Button colorScheme="teal" variant="ghost" ml={5} width={15}>
+              <EditIcon />
+            </Button>
+          </NextLink>
         </Heading>
 
         {loading && !data ? (

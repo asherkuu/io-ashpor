@@ -22,6 +22,7 @@ import {
   IoCallOutline,
   IoCalendarClearOutline,
   IoMailOutline,
+  IoFitnessSharp,
 } from "react-icons/io5";
 import {
   SiNextdotjs,
@@ -40,7 +41,6 @@ import {
   SiEclipseide,
   SiLinux,
 } from "react-icons/si";
-import { GrGremlin } from "react-icons/gr";
 import { FiCodesandbox } from "react-icons/fi";
 
 import Layout from "components/layouts/Article";
@@ -79,25 +79,40 @@ const Home: NextPage<{ locale: string }> = ({ locale }) => {
             <Box m="15px 0 20px 0">
               <List>
                 <ListItem>
-                  <BioIntro>
-                    <Icon as={GrGremlin} />
-                    <span>South of Korea</span>
-                  </BioIntro>
-                  <BioIntro>
-                    <Icon as={IoCalendarClearOutline} />
-                    <span>
-                      1997.12.20 / {getAge()}
-                      {t("age")}
-                    </span>
-                  </BioIntro>
-                  <BioIntro>
-                    <Icon as={IoCallOutline} />
-                    <span>+82 10-3948-2031</span>
-                  </BioIntro>
-                  <BioIntro>
-                    <Icon as={IoMailOutline} />
-                    <span>kyuseon39@gmail.com / asher_kuu@naver.com</span>
-                  </BioIntro>
+                  <Button
+                    variant="ghost"
+                    colorScheme="teal"
+                    leftIcon={<Icon as={IoFitnessSharp} />}
+                  >
+                    South of Korea
+                  </Button>
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="ghost"
+                    colorScheme="teal"
+                    leftIcon={<Icon as={IoCalendarClearOutline} />}
+                  >
+                    1997.12.20 / {getAge()} {t("age")}
+                  </Button>
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="ghost"
+                    colorScheme="teal"
+                    leftIcon={<Icon as={IoCallOutline} />}
+                  >
+                    010-3948-2031
+                  </Button>
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="ghost"
+                    colorScheme="teal"
+                    leftIcon={<Icon as={IoMailOutline} />}
+                  >
+                    kyuseon39@gmail.com / asher_kuu@naver.com
+                  </Button>
                 </ListItem>
               </List>
             </Box>

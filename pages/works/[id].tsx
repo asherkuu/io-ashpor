@@ -1,19 +1,21 @@
 import React from "react";
 import { GetServerSideProps, NextPage } from "next";
-import { Container, Badge } from "@chakra-ui/react";
-
 import Layout from "components/layouts/Article";
-import Viewer from "components/viewer";
 import { Title } from "components/work";
+import Viewer from "components/viewer";
+
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 import { useGetPortfolioById } from "actions/portfolios";
 import IPortfolio from "interfaces/portfolio";
-
+import { Container, Badge } from "@chakra-ui/layout";
 interface WorkDetailProps {
   param: string;
 }
 
-const WorkDetail: NextPage<WorkDetailProps> = ({ param }) => {
+const Index: NextPage<WorkDetailProps> = ({ param }) => {
+  const { t } = useTranslation("common");
   const { data, loading }: { data: IPortfolio; loading: boolean } =
     useGetPortfolioById(param);
 
@@ -24,13 +26,21 @@ const WorkDetail: NextPage<WorkDetailProps> = ({ param }) => {
           <span>Loading...</span>
         ) : (
           <>
-            <Title>
-              {data.title}
-              <Badge>
-                {data.jobTitle === "toy" ? "토이 프로젝트" : "실무 프로젝트"}
-              </Badge>
-            </Title>
-            <Viewer contents={data.content} />
+            {data && (
+              <>
+                <Title>
+                  {data.title}
+                  <Badge>
+                    {data.jobTitle === "toy" ? (
+                      <>{t("Work.toy")}</>
+                    ) : (
+                      <>{t("Work.working")}</>
+                    )}
+                  </Badge>
+                </Title>
+                <Viewer contents={data.content} />
+              </>
+            )}
           </>
         )}
       </Container>
@@ -38,10 +48,17 @@ const WorkDetail: NextPage<WorkDetailProps> = ({ param }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<{ param: string }> = async (
-  ctx
-) => {
-  return { props: { param: ctx.query.id.toString() } };
+export const getServerSideProps: GetServerSideProps<{
+  locale: string;
+  param: string;
+}> = async ({ locale, query }) => {
+  return {
+    props: {
+      param: query.id.toString(),
+      locale,
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
 };
 
-export default WorkDetail;
+export default Index;

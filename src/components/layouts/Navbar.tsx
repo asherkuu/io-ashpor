@@ -97,15 +97,15 @@ const Navbar = (props) => {
           <LinkItem href="/works" path={path}>
             Works
           </LinkItem>
-          <LinkItem href="/codes" path={path}>
+          {/* <LinkItem href="/codes" path={path}>
             Codes
           </LinkItem>
           <LinkItem href="/posts" path={path}>
             Posts
-          </LinkItem>
+          </LinkItem> */}
           <LinkItem
+            href="https://github.com/asherkuu/io-ashpor"
             _target="_blank"
-            href="https://github.com/asherkuu/asher-home"
             path={path}
             display="inline-flex"
             alignItems="center"

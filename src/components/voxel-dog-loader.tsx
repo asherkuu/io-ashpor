@@ -14,7 +14,7 @@ export const DogSpinner = () => (
 );
 
 export const DogContainer = forwardRef(
-  ({ children }: { children: ReactNode }, ref = null): any => (
+  ({ children }: { children: ReactNode }, ref): any => (
     <Box
       //@ts-ignore
       ref={ref}

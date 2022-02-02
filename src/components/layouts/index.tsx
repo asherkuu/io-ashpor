@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import { Box, Container } from "@chakra-ui/react";
@@ -37,13 +38,17 @@ const Main: FC<MainProps> = ({ children, router }) => {
 
       <NavBar path={router.asPath} />
 
-      <Container maxW="container.md" pt={14}>
-        <LazyVoxelDog />
-
-        {children}
-
-        <Footer />
-      </Container>
+      {!router.asPath.includes("admin") ? (
+        <Container maxW="container.md" pt={14}>
+          <LazyVoxelDog />
+          {children}
+          <Footer />
+        </Container>
+      ) : (
+        <Container maxW="100vw" pt={14}>
+          {children}
+        </Container>
+      )}
     </Box>
   );
 };
