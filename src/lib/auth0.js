@@ -29,7 +29,6 @@ const auth0 = initAuth0({
   clockTolerance: 60,
   httpTimeout: 5000,
   authorizationParams: {
-    // scope: "openid profile email",
     scope: "read:current_user update:current_user_metadata openid profile",
     audience: CONFIG.AUTH0_AUDIENCE,
   },
