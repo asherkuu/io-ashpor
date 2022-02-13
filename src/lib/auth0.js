@@ -1,6 +1,7 @@
 import { initAuth0 } from "@auth0/nextjs-auth0";
 
 const PROD_CONFIG = {
+  AUTH0_BASEURL: "https://ashpor.com",
   AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
   AUTH0_CALLBACK: process.env.AUTH0_CALLBACK,
   AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
@@ -9,6 +10,7 @@ const PROD_CONFIG = {
   AUTH0_AUDIENCE: process.env.AUTH0_AUDIENCE,
 };
 const DEV_CONFIG = {
+  AUTH0_BASEURL: "http://localhost:3000",
   AUTH0_DOMAIN: process.env.NEXT_PUBLIC_AUTH0_DOMAIN,
   AUTH0_CALLBACK: process.env.NEXT_PUBLIC_AUTH0_CALLBACK,
   AUTH0_CLIENT_ID: process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID,
@@ -21,7 +23,7 @@ const CONFIG =
   process.env.NODE_ENV === "development" ? DEV_CONFIG : PROD_CONFIG;
 
 const auth0 = initAuth0({
-  baseURL: "http://localhost:3000",
+  baseURL: CONFIG.AUTH0_BASEURL,
   issuerBaseURL: CONFIG.AUTH0_DOMAIN,
   clientID: CONFIG.AUTH0_CLIENT_ID,
   clientSecret: CONFIG.AUTH0_CLIENT_SECRET,
