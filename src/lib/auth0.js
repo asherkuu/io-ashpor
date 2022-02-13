@@ -1,10 +1,27 @@
 import { initAuth0 } from "@auth0/nextjs-auth0";
-import { DEV, PROD } from "./env";
 
-const CONFIG = process.env.NODE_ENV === "development" ? DEV : PROD;
+const PROD_CONFIG = {
+  AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
+  AUTH0_CALLBACK: process.env.AUTH0_CALLBACK,
+  AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+  AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
+  AUTH0_SECRET: process.env.AUTH0_SECRET,
+  AUTH0_AUDIENCE: process.env.AUTH0_AUDIENCE,
+};
+const DEV_CONFIG = {
+  AUTH0_DOMAIN: process.env.NEXT_PUBLIC_AUTH0_DOMAIN,
+  AUTH0_CALLBACK: process.env.NEXT_PUBLIC_AUTH0_CALLBACK,
+  AUTH0_CLIENT_ID: process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID,
+  AUTH0_CLIENT_SECRET: process.env.NEXT_PUBLIC_AUTH0_CLIENT_SECRET,
+  AUTH0_SECRET: process.env.NEXT_PUBLIC_AUTH0_SECRET,
+  AUTH0_AUDIENCE: process.env.NEXT_PUBLIC_AUTH0_AUDIENCE,
+};
+
+const CONFIG =
+  process.env.NODE_ENV === "development" ? DEV_CONFIG : PROD_CONFIG;
 
 const auth0 = initAuth0({
-  baseURL: CONFIG.BASE_URL,
+  baseURL: "http://localhost:3000",
   issuerBaseURL: CONFIG.AUTH0_DOMAIN,
   clientID: CONFIG.AUTH0_CLIENT_ID,
   clientSecret: CONFIG.AUTH0_CLIENT_SECRET,
