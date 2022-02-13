@@ -23,6 +23,7 @@ import ThemeToggleButton from "../common/theme-toggle-button";
 import { ReactNode } from "typings";
 import { FC } from "react";
 import Locales from "./Locales";
+import User from "./User";
 
 interface LinkItemProps {
   href: string;
@@ -60,7 +61,7 @@ const LinkItem: FC<LinkItemProps> = ({
 
 const Navbar = (props) => {
   const router = useRouter();
-  const { path } = props;
+  const { path, user, loading } = props;
 
   return (
     <Box
@@ -121,6 +122,7 @@ const Navbar = (props) => {
           <Box display="flex" align="right">
             <ThemeToggleButton />
             <Locales />
+            <User user={user || null} />
           </Box>
 
           <Box ml={2} display={{ base: "inline-block", md: "none" }}>

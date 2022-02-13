@@ -28,14 +28,18 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { FormInputWrap } from "components/admin/styled";
 import FilePreview from "components/editor/FilePreview";
+import withAuth from "hoc/withAuth";
 
 interface IValue {
   jobTitle: string;
   title: string;
+  engTitle: string;
   description: string;
+  engDescription: string;
   startDate: Date;
   endDate: Date;
   content: string;
+  engContent: string;
 }
 
 const SelectBar = ({ t, setValue }) => (
@@ -84,33 +88,28 @@ const New: NextPage = () => {
     const {
       jobTitle,
       title,
-      content,
+      engTitle,
       startDate,
       endDate,
+      content,
+      engContent,
       description,
+      engDescription,
     }: IValue = value;
 
-    if (!jobTitle) {
-      console.log(2);
-      toast.error("잡 타이틀을 선택하세요.");
-      return toast.error("잡 타이틀을 선택하세요.");
-    }
-    if (!startDate) {
-      console.log(3);
-      return toast.error("시작일을 선택하세요.");
-    }
-    if (!endDate) {
-      console.log(4);
-      return toast.error("종료일을 선택하세요.");
-    }
-    if (!content) {
-      console.log(1);
-      return toast.error("내용을 입력하세요.");
-    }
-    if (!file) {
-      console.log(5);
-      return toast.error("사진을 선택해 주세요");
-    }
+    const validText = (name) =>
+      t("Form.valid_required", { field: t(`Variables.${name}`) });
+
+    if (!jobTitle) return toast.error(validText("p_type"));
+    if (!startDate) return toast.error(validText("startDate"));
+    if (!endDate) return toast.error(validText("endDate"));
+    if (!title) return toast.error(validText("korTitle"));
+    if (!engTitle) return toast.error(validText("engTitle"));
+    if (!description) return toast.error(validText("korDesc"));
+    if (!engDescription) return toast.error(validText("engDesc"));
+    if (!content) return toast.error(validText("korContents"));
+    if (!engContent) return toast.error(validText("engContents"));
+    if (!file) return toast.error(validText("file"));
   };
 
   return (
@@ -118,6 +117,10 @@ const New: NextPage = () => {
       <form onSubmit={handleSubmit(_handleSubmit)}>
         <FormInputWrap>
           <Box mt={30} mb={2} gap={3}>
+            <Button type="submit" colorScheme="teal" p="0 30px">
+              Submit
+            </Button>
+
             <SelectBar t={t} setValue={setValue} />
 
             <div>
@@ -146,35 +149,27 @@ const New: NextPage = () => {
           <div>
             <div>
               <Input
-                {...register("title", {
-                  required: true,
-                })}
+                {...register("title")}
                 id="title"
                 name="title"
                 placeholder="Title"
                 size="md"
               />
               <Textarea
-                {...register("description", {
-                  required: true,
-                })}
+                {...register("description")}
                 placeholder="Description"
               />
             </div>
             <div>
               <Input
-                {...register("engTitle", {
-                  required: true,
-                })}
+                {...register("engTitle")}
                 id="engTitle"
                 name="engTitle"
                 placeholder="English Title"
                 size="md"
               />
               <Textarea
-                {...register("engDescription", {
-                  required: true,
-                })}
+                {...register("engDescription")}
                 placeholder="English Description"
               />
             </div>
@@ -191,7 +186,6 @@ const New: NextPage = () => {
             <FilePreview setFile={setFile} />
           </div>
         </Box>
-        <Button type="submit">+</Button>
       </form>
     </Layout>
   );
@@ -203,4 +197,4 @@ export const getServerSideProps = async ({ locale }) => {
   };
 };
 
-export default New;
+export default withAuth(New)("guest");

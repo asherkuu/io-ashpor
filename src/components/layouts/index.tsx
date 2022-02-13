@@ -8,6 +8,7 @@ import NavBar from "./Navbar";
 import Footer from "../common/footer";
 import VoxelDogLoader from "../common/voxel-dog-loader";
 
+import useGetUser from "actions/user";
 import { ReactNode } from "typings";
 
 const LazyVoxelDog = dynamic(() => import("../common/voxel-dog"), {
@@ -21,6 +22,8 @@ interface MainProps {
 }
 
 const Main: FC<MainProps> = ({ children, router }) => {
+  const { data, error, loading } = useGetUser();
+
   return (
     <Box as="main" pb={8}>
       <Head>
@@ -36,7 +39,7 @@ const Main: FC<MainProps> = ({ children, router }) => {
         <title>Asher Kim - Homepage</title>
       </Head>
 
-      <NavBar path={router.asPath} />
+      <NavBar path={router.asPath} user={data} loading={loading} />
 
       {!router.asPath.includes("admin") ? (
         <Container maxW="container.md" pt={14}>

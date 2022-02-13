@@ -32,6 +32,7 @@ export const handler = async (
       const portfolio: any = new Portfolio(portfolioData);
       portfolio.startDate = new Date(req.body.startDate);
       portfolio.endDate = new Date(req.body.endDate);
+      portfolio.published = "n";
 
       const newPortfolio = await portfolio.save();
       return res.status(200).json(newPortfolio);

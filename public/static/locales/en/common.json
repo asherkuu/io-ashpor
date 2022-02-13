@@ -16,6 +16,18 @@
     "toy": "Toy Project"
   },
   "Form": {
-    "validate_required": "{{field}} is required."
+    "valid_required": "{{field}} is required."
+  },
+  "Variables": {
+    "p_type": "Project Type",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "korTitle": "Title of Korean",
+    "engTitle": "Title of English",
+    "korDesc": "Description of Korean",
+    "engDesc": "Description of English",
+    "korContents": "Contents of Korean",
+    "engContents": "Contents of English",
+    "file": "Image"
   }
 }
