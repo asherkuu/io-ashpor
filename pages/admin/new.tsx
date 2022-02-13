@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const Editor = dynamic(import("components/Editor"), {
+const Editor = dynamic(import("components/editor"), {
   ssr: false,
   loading: () => <span>Loading...</span>,
 });
