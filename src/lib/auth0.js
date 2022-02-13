@@ -2,12 +2,12 @@ import { initAuth0 } from "@auth0/nextjs-auth0";
 
 const PROD_CONFIG = {
   AUTH0_BASEURL: "https://ashpor.com",
-  AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
-  AUTH0_CALLBACK: process.env.AUTH0_CALLBACK,
-  AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
-  AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
-  AUTH0_SECRET: process.env.AUTH0_SECRET,
-  AUTH0_AUDIENCE: process.env.AUTH0_AUDIENCE,
+  AUTH0_DOMAIN: process.env.AUTH0_DOMAIN || "https://ashpor.com",
+  AUTH0_CALLBACK: process.env.AUTH0_CALLBACK || "/",
+  AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID || "null",
+  AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET || "null",
+  AUTH0_SECRET: process.env.AUTH0_SECRET || "null",
+  AUTH0_AUDIENCE: process.env.AUTH0_AUDIENCE || "https://ashpor.com",
 };
 const DEV_CONFIG = {
   AUTH0_BASEURL: "http://localhost:3000",
