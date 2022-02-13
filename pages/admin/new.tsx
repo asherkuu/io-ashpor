@@ -197,4 +197,4 @@ export const getServerSideProps = async ({ locale }) => {
   };
 };
 
-export default withAuth(New)("guest");
+export default withAuth(New)(false);

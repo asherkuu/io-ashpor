@@ -135,21 +135,18 @@ const Navbar = (props) => {
               />
               <MenuList>
                 <NextLink href="/" passHref>
-                  <MenuItem as={Link}>About</MenuItem>
+                  <MenuItem as={Link}>Main</MenuItem>
                 </NextLink>
                 <NextLink href="/works" passHref>
                   <MenuItem as={Link}>Works</MenuItem>
                 </NextLink>
-                <NextLink href="/codes" passHref>
+                {/* <NextLink href="/codes" passHref>
                   <MenuItem as={Link}>Codes</MenuItem>
                 </NextLink>
                 <NextLink href="/posts" passHref>
                   <MenuItem as={Link}>Posts</MenuItem>
-                </NextLink>
-                <MenuItem
-                  as={Link}
-                  href="https://github.com/asher/asher-hompage"
-                >
+                </NextLink> */}
+                <MenuItem as={Link} href="https://github.com/asher/io-ashpor">
                   View Source
                 </MenuItem>
               </MenuList>
