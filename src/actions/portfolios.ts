@@ -4,3 +4,5 @@ import { fetcher, useApiHandler, useSwrHandler } from ".";
 export const useGetPortfolioList = () => useSwrHandler("/portfolios");
 export const useGetPortfolioById = (id: string) =>
   useSwrHandler(`/portfolios/${id}`);
+
+export const postPortfolios = (data) => useApiHandler("/portfolios", data);

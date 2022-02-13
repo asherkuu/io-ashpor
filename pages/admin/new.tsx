@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import Layout from "components/layouts/Article";
 import { Select } from "@chakra-ui/react";
+import { toast } from "react-toastify";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -27,6 +28,15 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { FormInputWrap } from "components/admin/styled";
 import FilePreview from "components/editor/FilePreview";
+
+interface IValue {
+  jobTitle: string;
+  title: string;
+  description: string;
+  startDate: Date;
+  endDate: Date;
+  content: string;
+}
 
 const SelectBar = ({ t, setValue }) => (
   <Select
@@ -71,7 +81,36 @@ const New: NextPage = () => {
   };
 
   const _handleSubmit = async (value) => {
-    console.log(value);
+    const {
+      jobTitle,
+      title,
+      content,
+      startDate,
+      endDate,
+      description,
+    }: IValue = value;
+
+    if (!jobTitle) {
+      console.log(2);
+      toast.error("잡 타이틀을 선택하세요.");
+      return toast.error("잡 타이틀을 선택하세요.");
+    }
+    if (!startDate) {
+      console.log(3);
+      return toast.error("시작일을 선택하세요.");
+    }
+    if (!endDate) {
+      console.log(4);
+      return toast.error("종료일을 선택하세요.");
+    }
+    if (!content) {
+      console.log(1);
+      return toast.error("내용을 입력하세요.");
+    }
+    if (!file) {
+      console.log(5);
+      return toast.error("사진을 선택해 주세요");
+    }
   };
 
   return (

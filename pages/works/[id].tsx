@@ -1,7 +1,7 @@
 import React from "react";
 import { GetServerSideProps, NextPage } from "next";
 import Layout from "components/layouts/Article";
-import { Title } from "components/work";
+import { Title } from "components/common/work";
 import Viewer from "components/viewer";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";

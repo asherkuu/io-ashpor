@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 
 import { WorksLoader } from "components/shares/Loader";
 import Layout from "components/layouts/Article";
-import Section from "components/section";
-import { WorkGridItem } from "components/grid-item";
+import Section from "components/common/section";
+import { WorkGridItem } from "components/common/grid-item";
 
 import { useGetPortfolioList } from "actions/portfolios";
 import IPortfolio from "interfaces/portfolio";

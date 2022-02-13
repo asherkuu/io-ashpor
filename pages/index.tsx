@@ -44,9 +44,9 @@ import {
 import { FiCodesandbox } from "react-icons/fi";
 
 import Layout from "components/layouts/Article";
-import Section from "components/section";
-import Paragraph from "components/paragraph";
-import { BioIntro, BioSection, BioYear } from "components/bio";
+import Section from "components/common/section";
+import Paragraph from "components/common/paragraph";
+import { BioIntro, BioSection, BioYear } from "components/common/bio";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";

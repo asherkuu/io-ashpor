@@ -2,7 +2,7 @@ import Head from "next/head";
 import { NextPage } from "next";
 import { motion } from "framer-motion";
 
-import { GridItemStyle } from "../grid-item";
+import { GridItemStyle } from "../common/grid-item";
 
 import { ReactNode } from "typings";
 

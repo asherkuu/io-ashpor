@@ -3,8 +3,8 @@ import { NextPage } from "next";
 import { Container, Heading, SimpleGrid } from "@chakra-ui/react";
 
 import Layout from "components/layouts/Article";
-import Section from "components/section";
-import { GridItem } from "components/grid-item";
+import Section from "components/common/section";
+import { GridItem } from "components/common/grid-item";
 
 import { CODE_LIST } from "lib/code";
 import ICodes from "interfaces/code";

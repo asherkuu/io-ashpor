@@ -19,7 +19,7 @@ import {
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { IoLogoGithub } from "react-icons/io5";
 
-import ThemeToggleButton from "../theme-toggle-button";
+import ThemeToggleButton from "../common/theme-toggle-button";
 import { ReactNode } from "typings";
 import { FC } from "react";
 import Locales from "./Locales";
