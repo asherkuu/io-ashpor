@@ -34,10 +34,8 @@ const auth0 = initAuth0({
     audience: CONFIG.AUTH0_AUDIENCE,
   },
   routes: {
-    // callback: CONFIG.AUTH0_CALLBACK,
-    // postLogoutRedirect: CONFIG.AUTH0_POST_LOGOUT_REDIRECT_URI,
-    callback: "/api/v1/callback",
-    postLogoutRedirect: "/",
+    callback: CONFIG.AUTH0_CALLBACK,
+    postLogoutRedirect: CONFIG.AUTH0_POST_LOGOUT_REDIRECT_URI,
   },
   session: {
     rollingDuration: 60 * 60 * 24,
