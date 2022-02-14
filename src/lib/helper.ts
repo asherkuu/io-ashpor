@@ -1,3 +1,5 @@
+import { CONFIG } from "./env";
+
 // 이미지 확장자 체크
 export const isValidImageExtension = (e: string) => {
   const iType = ["jpg", "png", "jpeg"];
@@ -9,4 +11,11 @@ export const isValidImageExtension = (e: string) => {
     };
   }
   return { success: true };
+};
+
+// 권한 체크
+export const isCheckRole = (user) => {
+  return user
+    ? user[CONFIG.AUTH0_NAMESPACE + "/roles"].includes("admin")
+    : null;
 };

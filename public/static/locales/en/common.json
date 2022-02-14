@@ -19,7 +19,7 @@
     "valid_required": "{{field}} is required."
   },
   "Variables": {
-    "p_type": "Project Type",
+    "jobTitle": "Project Type",
     "startDate": "Start Date",
     "endDate": "End Date",
     "korTitle": "Title of Korean",

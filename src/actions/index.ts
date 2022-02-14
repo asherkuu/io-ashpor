@@ -40,6 +40,7 @@ export function useApiHandler(apiCall) {
           data: json ? json.data : null,
           loading: false,
         });
+
         // return json ? json.data : "error !";
         resolve(json ? json.data : "error !");
       } catch (e) {

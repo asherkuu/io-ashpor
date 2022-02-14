@@ -12,15 +12,16 @@ import IPortfolio from "interfaces/portfolio";
 import { Container, Badge } from "@chakra-ui/layout";
 interface WorkDetailProps {
   param: string;
+  locale: string;
 }
 
-const Index: NextPage<WorkDetailProps> = ({ param }) => {
+const Index: NextPage<WorkDetailProps> = ({ param, locale }) => {
   const { t } = useTranslation("common");
   const { data, loading }: { data: IPortfolio; loading: boolean } =
     useGetPortfolioById(param);
 
   return (
-    <Layout title={data && data.title}>
+    <Layout title={data && data[locale].title}>
       <Container>
         {loading && !data ? (
           <span>Loading...</span>
@@ -29,7 +30,7 @@ const Index: NextPage<WorkDetailProps> = ({ param }) => {
             {data && (
               <>
                 <Title>
-                  {data.title}
+                  {data[locale].title}
                   <Badge>
                     {data.jobTitle === "toy" ? (
                       <>{t("Work.toy")}</>
@@ -38,7 +39,7 @@ const Index: NextPage<WorkDetailProps> = ({ param }) => {
                     )}
                   </Badge>
                 </Title>
-                <Viewer contents={data.content} />
+                <Viewer contents={data[locale].content} />
               </>
             )}
           </>

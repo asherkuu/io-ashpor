@@ -19,7 +19,7 @@
     "valid_required": "{{field}} 항목을 입력해주세요."
   },
   "Variables": {
-    "p_type": "프로젝트 유형",
+    "jobTitle": "프로젝트 유형",
     "startDate": "시작일",
     "endDate": "종료일",
     "korTitle": "제목",

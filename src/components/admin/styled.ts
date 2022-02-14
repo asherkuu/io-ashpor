@@ -4,6 +4,13 @@ export const FormInputWrap = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  width: 100%;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  max-width: 80ch;
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+
   > div {
     display: flex;
     flex-direction: row;
@@ -41,5 +48,25 @@ export const FormInputWrap = styled.div`
     border-radius: var(--chakra-radii-md);
     border: 1px solid;
     border-color: inherit;
+  }
+`;
+
+export const EditorWrap = styled.div`
+  width: 100%;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  max-width: 200ch;
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  .br-t {
+    border-top: 3px solid gray;
+  }
+  div {
+    padding-top: 5px;
   }
 `;

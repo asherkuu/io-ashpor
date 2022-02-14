@@ -1,39 +1,39 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Result, ValidationError, validationResult } from "express-validator";
 
-import connectDB from "../../../../src/middleware/mongodb";
-import Portfolios from "../../../../src/models/portfolio";
+import connectDB from "../../../../../src/middleware/mongodb";
+import Portfolios from "../../../../../src/models/portfolio";
 import IPortfolio from "interfaces/portfolio";
 import { CatchType } from "typings";
 
 /***
- * 리스트 조회
+ * 수정
  * @METHOD `GET`
- * @PATH `/api/v1/portfolios/:id`
+ * @PATH `/api/v1/portfolios/:id/edit`
  */
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<IPortfolio | CatchType>
 ) => {
   const errors: Result<ValidationError> = await validationResult(req);
-
   if (!errors.isEmpty()) {
     const firstError: string = await errors.array().map((err) => err.msg)[0];
-    res.status(422).json({ msg: firstError });
+    return res.status(422).json({ msg: firstError });
   } else {
+    const {
+      body,
+      query: { id },
+    } = req;
+
     try {
-      await Portfolios.findById(req.query.id).exec(
-        (err: Object, portfolio: IPortfolio) => {
-          if (err || !portfolio) {
-            res.status(400).json({
-              msg: "게시글이 존재하지 않습니다.",
-            });
-          }
-          res.status(200).json(portfolio);
-        }
-      );
+      const updatePortfolio = await Portfolios.findByIdAndUpdate(id, body, {
+        new: true,
+        upsert: true,
+      }).exec();
+
+      return res.json(updatePortfolio);
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         msg: error.message,
         error,
       });

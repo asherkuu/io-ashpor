@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const EditorWrap = styled.div`
   display: flex;
-  max-height: 600px;
+  max-height: 700px;
   margin-bottom: 100px;
   & > div:first-of-type {
     flex: 1;
@@ -12,7 +12,7 @@ export const EditorWrap = styled.div`
     margin-top: 70px;
     margin-left: 20px;
     overflow: auto;
-    max-height: 600px;
+    max-height: 700px;
   }
 `;
 

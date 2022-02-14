@@ -8,9 +8,7 @@ const PortfolioSchema: Schema<IPortfolio> = new Schema(
   {
     seq: { type: Number, required: true },
     userId: { type: String, required: true },
-    title: { type: String, required: true, maxlength: 128 },
     jobTitle: { type: String, required: true, maxlength: 128 },
-    description: { type: String, required: true },
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     img: {
@@ -20,7 +18,16 @@ const PortfolioSchema: Schema<IPortfolio> = new Schema(
       size: { type: Number, required: true },
       key: { type: String, unique: true, required: true },
     },
-    content: { type: String, required: true },
+    en: {
+      title: { type: String, required: true, maxlength: 128 },
+      desc: { type: String, required: true },
+      content: { type: String, required: true },
+    },
+    ko: {
+      title: { type: String, required: true, maxlength: 128 },
+      desc: { type: String, required: true },
+      content: { type: String, required: true },
+    },
   },
   {
     timestamps: true,

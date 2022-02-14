@@ -1,27 +1,32 @@
 import React, { FC } from "react";
 import { NextPage } from "next";
 import NextLink from "next/link";
-import { Container, Heading, SimpleGrid, Button } from "@chakra-ui/react";
+import { Container, Heading, SimpleGrid, Button, Box } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
-import { useRouter } from "next/router";
 
 import { WorksLoader } from "components/shares/Loader";
 import Layout from "components/layouts/Article";
 import Section from "components/common/section";
 import { WorkGridItem } from "components/common/grid-item";
+import { BsPencilFill, BsTrashFill } from "react-icons/bs";
 
 import { useGetPortfolioList } from "actions/portfolios";
 import IPortfolio from "interfaces/portfolio";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import useGetUser from "actions/user";
+import IUser from "interfaces/user";
+
+import { isCheckRole } from "lib/helper";
 
 interface ListItemProps {
+  role?: "admin";
   data: IPortfolio[];
   locale: string;
 }
 
-const ListItem: FC<ListItemProps> = ({ data, locale }) => {
+const ListItem: FC<ListItemProps> = ({ role = "guest", data, locale }) => {
   return (
     <>
       {data &&
@@ -29,11 +34,26 @@ const ListItem: FC<ListItemProps> = ({ data, locale }) => {
           <Section key={item._id} delay={0.1}>
             <WorkGridItem
               id={item._id}
-              title={item.title}
+              title={item[locale].title}
               thumbnail={item.img.location}
             >
-              {item.description}
+              {item[locale].desc}
             </WorkGridItem>
+
+            {role && (
+              <Box>
+                <NextLink href={`/admin/works/${item._id}/edit`}>
+                  <a>
+                    <Button variant="ghost" colorScheme="teal">
+                      <BsPencilFill />
+                    </Button>
+                  </a>
+                </NextLink>
+                <Button variant="ghost" colorScheme="teal">
+                  <BsTrashFill />
+                </Button>
+              </Box>
+            )}
           </Section>
         ))}
     </>
@@ -41,7 +61,8 @@ const ListItem: FC<ListItemProps> = ({ data, locale }) => {
 };
 
 const Works: NextPage<{ locale: string }> = ({ locale }) => {
-  const router = useRouter();
+  console.log(locale);
+  const { data: user }: { data: IUser } = useGetUser();
   const { data, loading }: { data: IPortfolio[]; loading: boolean } =
     useGetPortfolioList();
 
@@ -57,18 +78,22 @@ const Works: NextPage<{ locale: string }> = ({ locale }) => {
           mb={4}
         >
           Works
-          <NextLink href="/admin/new">
-            <Button colorScheme="teal" variant="ghost" ml={5} width={15}>
-              <EditIcon />
-            </Button>
-          </NextLink>
+          {user && isCheckRole(user) && (
+            <NextLink href="/admin/works/new">
+              <Button colorScheme="teal" variant="ghost" ml={5} width={15}>
+                <EditIcon />
+              </Button>
+            </NextLink>
+          )}
         </Heading>
 
         {loading && !data ? (
           <WorksLoader />
         ) : (
           <SimpleGrid columns={[1, 1, 2]} gap={6}>
-            {data && <ListItem data={data} locale={locale} />}
+            {data && (
+              <ListItem role={isCheckRole(user)} data={data} locale={locale} />
+            )}
           </SimpleGrid>
         )}
       </Container>

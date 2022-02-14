@@ -11,7 +11,6 @@ import {
   Textarea,
   InputGroup,
   InputLeftAddon,
-  Heading,
 } from "@chakra-ui/react";
 import Layout from "components/layouts/Article";
 import { Select } from "@chakra-ui/react";
@@ -26,7 +25,7 @@ const Editor = dynamic(import("components/editor"), {
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { FormInputWrap } from "components/admin/styled";
+import { EditorWrap, FormInputWrap } from "components/admin/styled";
 import FilePreview from "components/editor/FilePreview";
 import withAuth from "hoc/withAuth";
 
@@ -100,7 +99,7 @@ const New: NextPage = () => {
     const validText = (name) =>
       t("Form.valid_required", { field: t(`Variables.${name}`) });
 
-    if (!jobTitle) return toast.error(validText("p_type"));
+    if (!jobTitle) return toast.error(validText("jobTitle"));
     if (!startDate) return toast.error(validText("startDate"));
     if (!endDate) return toast.error(validText("endDate"));
     if (!title) return toast.error(validText("korTitle"));
@@ -122,7 +121,8 @@ const New: NextPage = () => {
             </Button>
 
             <SelectBar t={t} setValue={setValue} />
-
+          </Box>
+          <Box mb={2} gap={3}>
             <div>
               <InputGroup>
                 <InputLeftAddon pointerEvents="none" children="Start" />
@@ -175,17 +175,20 @@ const New: NextPage = () => {
             </div>
           </div>
         </FormInputWrap>
-        <Box>
-          <Editor onChange={(value) => handleContent(value, "content")} />
-        </Box>
-        <Box>
-          <Editor onChange={(value) => handleContent(value, "engContent")} />
-        </Box>
-        <Box>
-          <div>
-            <FilePreview setFile={setFile} />
-          </div>
-        </Box>
+
+        <EditorWrap>
+          <Box>
+            <Editor onChange={(value) => handleContent(value, "content")} />
+          </Box>
+          <Box>
+            <Editor onChange={(value) => handleContent(value, "engContent")} />
+          </Box>
+          <Box>
+            <div>
+              <FilePreview setFile={setFile} />
+            </div>
+          </Box>
+        </EditorWrap>
       </form>
     </Layout>
   );
@@ -197,4 +200,4 @@ export const getServerSideProps = async ({ locale }) => {
   };
 };
 
-export default withAuth(New)(false);
+export default withAuth(New)("admin");
