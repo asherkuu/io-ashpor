@@ -1,7 +1,6 @@
 {
   "name": "vercel-next",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "PORT=3000 next dev",
     "sh": "sh script/generate-sitemap.sh",

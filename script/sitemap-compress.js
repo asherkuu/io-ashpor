@@ -1,5 +1,5 @@
-import zlib from "zlib";
-import * as fs from "fs";
+const fs = require("fs");
+const zlib = require("zlib");
 // public/sitemap 디렉토리 내부에 sitemap들이 있으므로, 해당 폴더에서 실행합니다.
 const dirs = ["../public/sitemap"];
 

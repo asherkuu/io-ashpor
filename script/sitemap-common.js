@@ -1,7 +1,6 @@
 // 패키지 설치
-import * as fs from "fs";
-import { globby } from "globby";
-import prettier from "prettier";
+const fs = require("fs");
+const prettier = require("prettier");
 
 // 오늘 날짜 가져오기 & 도메인 설정
 const getDate = new Date().toISOString();
@@ -10,6 +9,8 @@ const ASHPOR_DOMAIN = "https://www.ashpor.com";
 const formatted = (sitemap) => prettier.format(sitemap, { parser: "html" });
 
 (async () => {
+  const { globby } = await import("globby");
+
   // 포함할 페이지와 제외할 페이지 등록
   const pages = await globby([
     // include
