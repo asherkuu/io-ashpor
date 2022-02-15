@@ -7,7 +7,8 @@ const connectDB = (handler) => async (req, res) => {
   }
   // Use new db connection
   await mongoose.connect(
-    "mongodb+srv://portrolio-user:QiwpR5rvboh0Hw7s@cluster0.qmfoa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    "mongodb+srv://portrolio-user:QiwpR5rvboh0Hw7s@cluster0.qmfoa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    { keepAlive: true, keepAliveInitialDelay: 300000 }
   );
   return handler(req, res);
 };
