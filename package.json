@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "server": "cross-env nodemon server.ts",
+    "start:server": "NODE_ENV=production node server.ts",
     "server-dev": "cross-env NODE_ENV=production ts-node --project tsconfig.json -r tsconfig-paths/register server.ts"
   },
   "dependencies": {
