@@ -1,76 +1,42 @@
-// @ts-ignore
-import express from "express";
-import next from "next";
-import cors from "cors";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
+//@ts-ignore
+const express = require("express");
+const next = require("next");
+const mongoose = require("mongoose");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-app.prepare().then(() => {
+app.prepare().then(async () => {
+  const CONSTANTS = {
+    MONGO_USER: process.env.NEXT_PUBLIC_MONGO_USER,
+    MONGO_PWD: process.env.NEXT_PUBLIC_MONGO_PWD,
+    MONGO_DBNAME: process.env.NEXT_PUBLIC_MONGO_DBNAME,
+  };
+  const { MONGO_USER, MONGO_PWD, MONGO_DBNAME } = CONSTANTS;
+
   const server = express();
 
-  server.use(cors());
-  server.use(bodyParser.json());
-
-  server.get("/", (req, res) => {
-    return app.render(req, res, "/");
+  server.all("*", (res, req) => {
+    return handle(res, req);
   });
 
-  server.get("*", (req, res) => {
-    return handle(req, res);
+  mongoose.connect(
+    `mongodb+srv://${MONGO_USER}:${MONGO_PWD}@cluster0.qmfoa.mongodb.net/${MONGO_DBNAME}?retryWrites=true&w=majority`,
+    { keepAlive: true, keepAliveInitialDelay: 300000, useNewUrlParser: true }
+  );
+
+  mongoose.connection.on("connected", () => {
+    console.log("Connect Success");
+
+    const PORT = process.env.NEXT_PUBLIC_PORT || 3000;
+    server.listen(PORT, (err) => {
+      err && console.log(err);
+      console.log(`> Ready on localhost:${PORT}`);
+    });
   });
 
-  // const mongURI = process.env.MONGO_URI;
-  // mongoose.connect(mongURI);
-
-  // mongoose.connection.on("connected", () => {
-  //   console.log("Connect Success");
-  // });
-
-  // mongoose.connection.on("error", (error) => {
-  //   console.log("error", error);
-  // });
-
-  // @ts-ignore
-  server.listen(process.env.PORT || 4001, (err) => {
-    if (err) throw err;
-    console.log(`listening to ${process.env.PORT || "4001"}`);
+  mongoose.connection.on("error", (error) => {
+    console.log("error", error);
   });
 });
-
-// // @ts-ignore
-// import "dotenv/config";
-// import next, { Request, Response } from "express";
-// import cors from "cors";
-// import express from "express";
-// import bodyParser from "body-parser";
-// import cookieParser from "cookie-parser";
-
-// const dev = process.env.NODE_ENV !== "production";
-// const app = next({ dev });
-// const handle = app.getRequestHandler();
-
-// app.prepare().then(() => {
-//   const server = express();
-
-//   // server.use(cors());
-//   // server.use(bodyParser.urlencoded({ extended: false }));
-//   // server.use(bodyParser.json());
-//   // server.use(cookieParser());
-
-//   server.get("/", (req: any, res: any) => {
-//     return app.render(req, res, "/");
-//   });
-
-//   server.get("*", (req, res) => {
-//     return handle(req, res);
-//   });
-//   // @ts-ignore
-//   server.listen(3000, (err: any) => {
-//     if (err) throw err;
-//     console.log("listening to 3000");
-//   });
-// });

@@ -65,6 +65,8 @@ const Navbar = (props) => {
 
   return (
     <Box
+      display="flex"
+      justifyContent="center"
       position="fixed"
       as="nav"
       w="100%"
@@ -73,13 +75,13 @@ const Navbar = (props) => {
       zIndex={1}
       {...props}
     >
-      <Container
+      <Box
         display="flex"
         p={2}
+        width="100%"
         maxW="container.md"
         wrap="wrap"
-        align="center"
-        justify="space-between"
+        justifyContent="space-between"
       >
         <Flex align="center" mr={5}>
           <Heading as="h1" size="lg" letterSpacing={"tighter"}>
@@ -123,37 +125,37 @@ const Navbar = (props) => {
             <ThemeToggleButton />
             <Locales />
             <User user={user || null} />
-          </Box>
 
-          <Box ml={2} display={{ base: "inline-block", md: "none" }}>
-            <Menu isLazy id="navbar-menu">
-              <MenuButton
-                as={IconButton}
-                icon={<HamburgerIcon />}
-                variant="outline"
-                aria-label="Options"
-              />
-              <MenuList>
-                <NextLink href="/" passHref>
-                  <MenuItem as={Link}>Main</MenuItem>
-                </NextLink>
-                <NextLink href="/works" passHref>
-                  <MenuItem as={Link}>Works</MenuItem>
-                </NextLink>
-                {/* <NextLink href="/codes" passHref>
+            <Box ml={1} display={{ base: "inline-block", md: "none" }}>
+              <Menu isLazy id="navbar-menu">
+                <MenuButton
+                  as={IconButton}
+                  icon={<HamburgerIcon />}
+                  variant="outline"
+                  aria-label="Options"
+                />
+                <MenuList>
+                  <NextLink href="/" passHref>
+                    <MenuItem as={Link}>Main</MenuItem>
+                  </NextLink>
+                  <NextLink href="/works" passHref>
+                    <MenuItem as={Link}>Works</MenuItem>
+                  </NextLink>
+                  {/* <NextLink href="/codes" passHref>
                   <MenuItem as={Link}>Codes</MenuItem>
                 </NextLink>
                 <NextLink href="/posts" passHref>
                   <MenuItem as={Link}>Posts</MenuItem>
                 </NextLink> */}
-                <MenuItem as={Link} href="https://github.com/asher/io-ashpor">
-                  View Source
-                </MenuItem>
-              </MenuList>
-            </Menu>
+                  <MenuItem as={Link} href="https://github.com/asher/io-ashpor">
+                    View Source
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
           </Box>
         </Box>
-      </Container>
+      </Box>
     </Box>
   );
 };

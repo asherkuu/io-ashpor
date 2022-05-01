@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
 export const View = styled.div`
   .hljs-keyword {
@@ -47,7 +47,7 @@ export const View = styled.div`
 
   .detail-container > p > a {
     background: rgb(242, 244, 245);
-    padding: 10px 10px;
+    padding: 10px;
     height: 48px;
     border-radius: 8px;
     cursor: pointer;
@@ -69,4 +69,4 @@ export const View = styled.div`
     width: -webkit-fill-available;
     border-radius: 15px;
   }
-`
+`;

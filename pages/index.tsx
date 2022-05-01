@@ -111,7 +111,7 @@ const Home: NextPage<{ locale: string }> = ({ locale }) => {
                     colorScheme="teal"
                     leftIcon={<Icon as={IoMailOutline} />}
                   >
-                    kyuseon39@gmail.com / asher_kuu@naver.com
+                    kyuseon39@gmail.com
                   </Button>
                 </ListItem>
               </List>

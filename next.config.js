@@ -4,6 +4,7 @@ const { i18n } = require("./next-i18next.config");
 module.exports = {
   i18n,
   reactStrictMode: true,
+  swcMinify: true,
   env: {
     mongodburl:
       "mongodb+srv://portrolio-user:QiwpR5rvboh0Hw7s@cluster0.qmfoa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
