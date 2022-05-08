@@ -2,7 +2,7 @@ import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-import { WorksSkeletonWrap, WorksSkeletonItem } from "./styled";
+import { WorksSkeletonWrap, WorksSkeletonItem } from "../styled";
 
 export const WorksLoader = React.memo(() => {
   return (

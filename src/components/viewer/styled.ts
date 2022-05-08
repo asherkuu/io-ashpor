@@ -58,6 +58,7 @@ export const View = styled.div`
     font-weight: 700;
     color: #668efd;
     line-height: 3;
+    word-break: break-word;
 
     &:hover {
       color: #96b1fc;

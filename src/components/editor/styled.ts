@@ -70,6 +70,8 @@ export const ViewerWrap = styled.div`
     text-decoration: none !important;
     font-weight: 700;
     color: #668efd;
+    word-break: break-word;
+
     &:hover {
       color: #96b1fc;
       background: #e5e7e9;

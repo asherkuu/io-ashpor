@@ -4,7 +4,7 @@ import NextLink from "next/link";
 import { Container, Heading, SimpleGrid, Button, Box } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
-import { WorksLoader } from "components/shares/Loader";
+import { WorksLoader } from "components/shares/Loading/WorksLoader";
 import Layout from "components/layouts/Article";
 import Section from "components/common/section";
 import { WorkGridItem } from "components/common/grid-item";

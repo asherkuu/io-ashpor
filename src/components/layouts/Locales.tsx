@@ -21,8 +21,8 @@ const Locales = () => {
           variant="outline"
         />
         <MenuList>
-          <MenuItem onClick={() => handleClickLocale("en")}>English</MenuItem>
           <MenuItem onClick={() => handleClickLocale("ko")}>한국어</MenuItem>
+          <MenuItem onClick={() => handleClickLocale("en")}>English</MenuItem>
         </MenuList>
       </Menu>
     </Box>

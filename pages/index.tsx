@@ -1,11 +1,10 @@
 import { NextPage } from "next";
 import NextLink from "next/link";
+import dynamic from "next/dynamic";
 import {
-  Link,
   Container,
   Heading,
   Box,
-  Image,
   Button,
   List,
   ListItem,
@@ -14,42 +13,23 @@ import {
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import {
-  IoLogoInstagram,
-  IoLogoGithub,
-  IoLogoVimeo,
-  IoLogoReact,
-  IoLogoSass,
   IoCallOutline,
   IoCalendarClearOutline,
   IoMailOutline,
   IoFitnessSharp,
 } from "react-icons/io5";
-import {
-  SiNextdotjs,
-  SiTypescript,
-  SiRedux,
-  SiCss3,
-  SiStyledcomponents,
-  SiJquery,
-  SiSpring,
-  SiAmazonaws,
-  SiNodedotjs,
-  SiMongodb,
-  SiMysql,
-  SiOracle,
-  SiJavascript,
-  SiEclipseide,
-  SiLinux,
-} from "react-icons/si";
-import { FiCodesandbox } from "react-icons/fi";
 
 import Layout from "components/layouts/Article";
 import Section from "components/common/section";
 import Paragraph from "components/common/paragraph";
-import { BioIntro, BioSection, BioYear } from "components/common/bio";
+import { ProfileImage } from "components/home/styled";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+
+const Contents = dynamic(() => import("components/home/Contents"), {
+  ssr: false,
+});
 
 const Home: NextPage<{ locale: string }> = ({ locale }) => {
   const { t } = useTranslation("common");
@@ -102,7 +82,7 @@ const Home: NextPage<{ locale: string }> = ({ locale }) => {
                     colorScheme="teal"
                     leftIcon={<Icon as={IoCallOutline} />}
                   >
-                    010-3948-2031
+                    +82 10-3948-2031
                   </Button>
                 </ListItem>
                 <ListItem>
@@ -122,15 +102,12 @@ const Home: NextPage<{ locale: string }> = ({ locale }) => {
             mt={{ base: 4, md: 0 }}
             ml={{ md: 6 }}
             textAlign="center"
+            borderRadius="999px"
           >
-            <Image
-              borderColor="whiteAlpha.800"
-              borderWidth={2}
-              borderStyle="solid"
-              maxWidth="200px"
-              display="inline-block"
-              borderRadius="full"
-              src="/images/asher.png"
+            <ProfileImage
+              width="200"
+              height="200"
+              src="/images/asher.webp"
               alt="Profile image"
             />
           </Box>
@@ -150,277 +127,7 @@ const Home: NextPage<{ locale: string }> = ({ locale }) => {
           </Box>
         </Section>
 
-        <Section delay={0.2}>
-          <Heading as="h3" variant="section-title">
-            Skills
-          </Heading>
-          <div>
-            <strong>
-              <span>Front-end</span>
-            </strong>
-          </div>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={IoLogoReact} />}
-          >
-            React
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiNextdotjs} />}
-          >
-            NextJs
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={IoLogoReact} />}
-          >
-            React Native
-          </Button>
-          {/* <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiJavascript} />}
-          >
-            Javascript
-          </Button> */}
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiTypescript} />}
-          >
-            Typescript
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiJquery} />}
-          >
-            jQuery
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiRedux} />}
-          >
-            Redux
-          </Button>
-          {/* <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={IoLogoReact} />}
-          >
-            Hooks
-          </Button> */}
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiCss3} />}
-          >
-            CSS
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={IoLogoSass} />}
-          >
-            SASS
-          </Button>
-          {/* <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiStyledcomponents} />}
-          >
-            Styled-Component
-          </Button> */}
-          <div>
-            <strong>
-              <span>Back-end</span>
-            </strong>
-          </div>
-
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiAmazonaws} />}
-          >
-            AWS
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiNodedotjs} />}
-          >
-            NodeJs
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiSpring} />}
-          >
-            Spring
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiEclipseide} />}
-          >
-            Egov
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiMongodb} />}
-          >
-            MongoDB
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiMysql} />}
-          >
-            MySql
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiOracle} />}
-          >
-            Oracle
-          </Button>
-
-          <div>
-            <strong>
-              <span>Else</span>
-            </strong>
-          </div>
-
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={IoLogoGithub} />}
-          >
-            GitHub
-          </Button>
-          <Button
-            variant="ghost"
-            colorScheme="teal"
-            leftIcon={<Icon as={SiLinux} />}
-          >
-            Linux
-          </Button>
-        </Section>
-
-        <Section delay={0.3}>
-          <Heading as="h3" variant="section-title">
-            Bio
-          </Heading>
-          <BioSection>
-            <BioYear>
-              <span>16.12</span>
-              <span>~</span>
-              <span>18.09</span>
-            </BioYear>
-            {t("Bio.army")}
-          </BioSection>
-          <BioSection>
-            <BioYear>
-              <span>19.02</span>
-              <span>~</span>
-              <span>19.08</span>
-            </BioYear>
-            {t("Bio.study")}
-          </BioSection>
-          <BioSection>
-            <BioYear>
-              <span>19.09</span>
-              <span>~</span>
-              <span>20.08</span>
-            </BioYear>
-            {t("Bio.waterInfo")}
-          </BioSection>
-          <BioSection>
-            <BioYear>
-              <span>21.01</span>
-              <span>~</span>
-              <span>21.05</span>
-            </BioYear>
-            {t("Bio.sinaetmul")}
-          </BioSection>
-          <BioSection>
-            <BioYear>
-              <span>21.09</span> <span>~</span> <span>21.11</span>
-            </BioYear>
-            {t("Bio.abent")}
-          </BioSection>
-          <BioSection>
-            <BioYear>
-              <span>21.12</span> <span>~</span> <span>{t("now")}</span>
-            </BioYear>
-            {t("Bio.bss")}
-          </BioSection>
-        </Section>
-
-        <Section delay={0.4}>
-          <Heading as="h3" variant="section-title">
-            On The Web / Info
-          </Heading>
-          <List>
-            <ListItem>
-              <Link href="https://github.com/asherkuu" target="_blank">
-                <Button
-                  variant="ghost"
-                  colorScheme="teal"
-                  leftIcon={<Icon as={IoLogoGithub} />}
-                >
-                  @asherkuu
-                </Button>
-              </Link>
-            </ListItem>
-
-            <ListItem>
-              <Link href="https://instagram.com/_8sher" target="_blank">
-                <Button
-                  variant="ghost"
-                  colorScheme="teal"
-                  leftIcon={<Icon as={IoLogoInstagram} />}
-                >
-                  @_8sher
-                </Button>
-              </Link>
-            </ListItem>
-
-            <ListItem>
-              <Link href="https://velog.io/@ashekruu/" target="_blank">
-                <Button
-                  variant="ghost"
-                  colorScheme="teal"
-                  leftIcon={<Icon as={IoLogoVimeo} />}
-                >
-                  asherkuu.log
-                </Button>
-              </Link>
-            </ListItem>
-
-            <ListItem>
-              <Link
-                href="https://codesandbox.io/search?query=kyuseon39&page=1&configure%5BhitsPerPage%5D=12"
-                target="_blank"
-              >
-                <Button
-                  variant="ghost"
-                  colorScheme="teal"
-                  leftIcon={<Icon as={FiCodesandbox} />}
-                >
-                  kyuseon39
-                </Button>
-              </Link>
-            </ListItem>
-          </List>
-        </Section>
+        <Contents t={t} />
       </Container>
     </Layout>
   );

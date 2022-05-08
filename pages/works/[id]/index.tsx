@@ -10,6 +10,7 @@ import { useTranslation } from "next-i18next";
 import { useGetPortfolioById } from "actions/portfolios";
 import IPortfolio from "interfaces/portfolio";
 import { Container, Badge } from "@chakra-ui/layout";
+import Loading from "components/shares/Loading";
 interface WorkDetailProps {
   param: string;
   locale: string;
@@ -24,25 +25,23 @@ const Index: NextPage<WorkDetailProps> = ({ param, locale }) => {
     <Layout title={data && data[locale].title}>
       <Container>
         {loading && !data ? (
-          <span>Loading...</span>
+          <Loading />
         ) : (
-          <>
-            {data && (
-              <>
-                <Title>
-                  {data[locale].title}
-                  <Badge>
-                    {data.jobTitle === "toy" ? (
-                      <>{t("Work.toy")}</>
-                    ) : (
-                      <>{t("Work.working")}</>
-                    )}
-                  </Badge>
-                </Title>
-                <Viewer contents={data[locale].content} />
-              </>
-            )}
-          </>
+          data && (
+            <React.Fragment>
+              <Title>{data[locale].title}</Title>
+
+              <Badge mt="-4" mb="6" bgColor="white">
+                {data.jobTitle === "toy" ? (
+                  <>{t("Work.toy")}</>
+                ) : (
+                  <>{t("Work.working")}</>
+                )}
+              </Badge>
+
+              <Viewer contents={data[locale].content} />
+            </React.Fragment>
+          )
         )}
       </Container>
     </Layout>
